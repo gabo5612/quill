@@ -1,0 +1,58 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files — local overrides are never committed
+.env.local
+.env.*.local
+# keep .env.example tracked
+!.env.example
+
+# vercel
+.vercel
+
+# supabase
+supabase/.temp
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# QA harness artefacts
+/scripts/qa/session.json
+/scripts/qa/shot-*.png
+/scripts/qa/last-article-id*.txt
+node_modules/
+.next/
+.env*.local
+.DS_Store
+out/
+dist/

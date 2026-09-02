@@ -1,0 +1,581 @@
+/* ============================================================
+   Quill — Compass 1.0 Design System
+   globals.css  |  Tailwind v4 + @theme
+   ============================================================ */
+
+@import "tailwindcss";
+
+/* ============================================================
+   FONT FACES
+   ============================================================ */
+
+/* Aeonik — UI / Body */
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/aeonik-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/aeonik-medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Aeonik";
+  src: url("/fonts/aeonik-bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* PP Fragment Glare — Display / Headings */
+@font-face {
+  font-family: "PP Fragment";
+  src: url("/fonts/pp-fragment-glare-regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ============================================================
+   TAILWIND v4 @theme  — maps CSS vars → Tailwind utilities
+   ============================================================ */
+
+@theme {
+  /* --- Color palette: Neutrals --- */
+  --color-neutrals-50:  #F8F8F8;
+  --color-neutrals-100: #F5F5F5;
+  --color-neutrals-200: #F2F2F2;
+  --color-neutrals-300: #DDDDDD;
+  --color-neutrals-400: #B8B8B8;
+  --color-neutrals-500: #858585;
+  --color-neutrals-600: #5C5C5C;
+  --color-neutrals-700: #333333;
+  --color-neutrals-800: #232323;
+  --color-neutrals-900: #1C1C1C;
+
+  /* --- Color palette: Sand --- */
+  --color-sand-100: #DCDBD3;
+  --color-sand-200: #CBCABF;
+  --color-sand-300: #BAB8AC;
+  --color-sand-400: #8E8C82;
+  --color-sand-500: #626158;
+
+  /* --- Color palette: Gold --- */
+  --color-gold-100: #DBCAA5;
+  --color-gold-200: #C8B17D;
+  --color-gold-300: #B59756;
+  --color-gold-400: #9E8142;
+  --color-gold-500: #856B30;
+
+  /* --- Color palette: Red (brand accent) --- */
+  --color-red-100: #FF907A;
+  --color-red-200: #FA623D;
+  --color-red-300: #4F46E5;
+  --color-red-400: #CB2500;
+  --color-red-500: #991600;
+
+  /* --- Semantic color tokens (mapped from CSS vars) --- */
+  --color-bg:            var(--bg);
+  --color-surface:       var(--surface);
+  --color-surface-raised: var(--surface-raised);
+  --color-text:          var(--text);
+  --color-text-muted:    var(--text-muted);
+  --color-border:        var(--border);
+  --color-accent:        var(--accent);
+  --color-accent-hover:  var(--accent-hover);
+  --color-accent-text:   var(--accent-text);
+  --color-accent-fg:     var(--accent-fg);
+  --color-ring:          var(--ring);
+
+  /* Sidebar */
+  --color-sidebar-bg:      var(--sidebar-bg);
+  --color-sidebar-text:    var(--sidebar-text);
+  --color-sidebar-muted:   var(--sidebar-muted);
+  --color-sidebar-border:  var(--sidebar-border);
+  --color-sidebar-active:  var(--sidebar-active);
+  --color-sidebar-active-text: var(--sidebar-active-text);
+
+  /* Card */
+  --color-card-bg:      var(--card-bg);
+  --color-card-border:  var(--card-border);
+  --color-card-shadow:  var(--card-shadow);
+
+  /* Input */
+  --color-input-bg:          var(--input-bg);
+  --color-input-border:      var(--input-border);
+  --color-input-border-focus: var(--input-border-focus);
+  --color-input-text:        var(--input-text);
+  --color-input-placeholder: var(--input-placeholder);
+
+  /* Button */
+  --color-btn-primary-bg:       var(--btn-primary-bg);
+  --color-btn-primary-text:     var(--btn-primary-text);
+  --color-btn-primary-hover-bg: var(--btn-primary-hover-bg);
+  --color-btn-secondary-bg:     var(--btn-secondary-bg);
+  --color-btn-secondary-text:   var(--btn-secondary-text);
+  --color-btn-secondary-border: var(--btn-secondary-border);
+  --color-btn-ghost-text:       var(--btn-ghost-text);
+  --color-btn-ghost-hover-bg:   var(--btn-ghost-hover-bg);
+
+  /* --- Typography --- */
+  --font-fragment: "PP Fragment", Georgia, serif;
+  --font-aeonik:   Aeonik, Inter, system-ui, sans-serif;
+
+  /* --- Font sizes: Display scale --- */
+  --text-display-l:  3.5rem;   /* 56px / lh 64px */
+  --text-display-m:  2.5rem;   /* 40px / lh 48px */
+  --text-display-s:  2rem;     /* 32px / lh 40px */
+
+  /* --- Font sizes: Heading scale --- */
+  --text-heading-l:  1.75rem;  /* 28px / lh 36px */
+  --text-heading-m:  1.5rem;   /* 24px / lh 32px */
+  --text-heading-s:  1.25rem;  /* 20px / lh 28px */
+
+  /* --- Font sizes: Body scale --- */
+  --text-body:       1rem;     /* 16px / lh 24px */
+  --text-small:      0.875rem; /* 14px / lh 20px */
+  --text-caption:    0.75rem;  /* 12px / lh 16px */
+
+  /* --- Border radius: Compass scale --- */
+  --radius-none:    0;
+  --radius-xs:      0.125rem;  /* 2px  */
+  --radius-sm:      0.25rem;   /* 4px  */
+  --radius-md:      0.375rem;  /* 6px  */
+  --radius-lg:      0.5rem;    /* 8px  */
+  --radius-xl:      0.75rem;   /* 12px */
+  --radius-2xl:     1rem;      /* 16px */
+  --radius-3xl:     1.5rem;    /* 24px */
+  --radius-full:    9999px;
+
+  /* --- Spacing additions --- */
+  --spacing-18: 4.5rem;
+  --spacing-22: 5.5rem;
+  --spacing-sidebar: 15rem; /* 240px sidebar width */
+
+  /* --- Shadows --- */
+  --shadow-card:   0 1px 3px 0 rgb(0 0 0 / 0.08), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+  --shadow-raised: 0 4px 12px 0 rgb(0 0 0 / 0.10), 0 2px 4px -2px rgb(0 0 0 / 0.08);
+  --shadow-modal:  0 20px 60px 0 rgb(0 0 0 / 0.20), 0 8px 16px -4px rgb(0 0 0 / 0.12);
+
+  /* --- Transitions --- */
+  --transition-base:   150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-medium: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-slow:   400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================================
+   LAYER 1 — Primitive color vars (flat values)
+   ============================================================ */
+
+:root {
+  /* Neutrals */
+  --primitives-neutrals-50:  #F8F8F8;
+  --primitives-neutrals-100: #F5F5F5;
+  --primitives-neutrals-200: #F2F2F2;
+  --primitives-neutrals-300: #DDDDDD;
+  --primitives-neutrals-400: #B8B8B8;
+  --primitives-neutrals-500: #858585;
+  --primitives-neutrals-600: #5C5C5C;
+  --primitives-neutrals-700: #333333;
+  --primitives-neutrals-800: #232323;
+  --primitives-neutrals-900: #1C1C1C;
+
+  /* Sand */
+  --primitives-sand-100: #DCDBD3;
+  --primitives-sand-200: #CBCABF;
+  --primitives-sand-300: #BAB8AC;
+  --primitives-sand-400: #8E8C82;
+  --primitives-sand-500: #626158;
+
+  /* Gold */
+  --primitives-gold-100: #DBCAA5;
+  --primitives-gold-200: #C8B17D;
+  --primitives-gold-300: #B59756;
+  --primitives-gold-400: #9E8142;
+  --primitives-gold-500: #856B30;
+  /* Added for contrast: gold-500 on the light review chip is only 4.00:1. */
+  --primitives-gold-600: #6E5827;
+
+  /* Red */
+  --primitives-red-100: #FF907A;
+  --primitives-red-200: #FA623D;
+  --primitives-red-300: #4F46E5;
+  --primitives-red-400: #CB2500;
+  --primitives-red-500: #991600;
+}
+
+/* ============================================================
+   LAYER 2 — Semantic vars — Light mode (default)
+   ============================================================ */
+
+:root {
+  /* Core surfaces */
+  --bg:            var(--primitives-neutrals-200); /* #F2F2F2 */
+  --surface:       var(--primitives-neutrals-50);  /* #F8F8F8 */
+  --surface-raised: var(--primitives-neutrals-100); /* #F5F5F5 */
+
+  /* Typography */
+  --text:          var(--primitives-neutrals-700); /* #333333 — 11.29:1 */
+  /* neutrals-500 measured 3.30:1 here; neutrals-600 is 5.97:1 and still
+     clearly reads as secondary against the 11.29:1 body text. */
+  --text-muted:    var(--primitives-neutrals-600); /* #5C5C5C — 5.97:1 */
+
+  /* Border */
+  --border:        var(--primitives-neutrals-300); /* #DDDDDD */
+
+  /* Accent — Red/300 */
+  /*
+   * --accent is the brand red, used for fills, rings, icon tints and other
+   * non-text surfaces where 3:1 is the bar.
+   *
+   * --accent-text is a deeper variant for accent-coloured TEXT on the page
+   * background: #4F46E5 on #F2F2F2 measures 3.68:1 and fails AA for body
+   * copy, while #CB2500 measures 4.93:1.
+   */
+  --accent:        var(--primitives-red-300);      /* #4F46E5 */
+  --accent-hover:  var(--primitives-red-400);      /* #CB2500 */
+  --accent-text:   var(--primitives-red-400);      /* #CB2500 — 4.93:1 */
+  --accent-fg:     var(--primitives-neutrals-50);  /* #F8F8F8 */
+
+  /* Focus ring */
+  --ring:          var(--primitives-red-300);      /* #4F46E5 */
+
+  /* --- Sidebar / Nav --- */
+  --sidebar-bg:          var(--primitives-neutrals-100); /* #F5F5F5 */
+  --sidebar-text:        var(--primitives-neutrals-700); /* #333333 */
+  --sidebar-muted:       var(--primitives-neutrals-500); /* #858585 */
+  --sidebar-border:      var(--primitives-neutrals-300); /* #DDDDDD */
+  --sidebar-active:      var(--primitives-neutrals-200); /* #F2F2F2 */
+  --sidebar-active-text: var(--primitives-neutrals-900); /* #1C1C1C */
+
+  /* --- Card --- */
+  --card-bg:     var(--primitives-neutrals-50);  /* #F8F8F8 */
+  --card-border: var(--primitives-neutrals-300); /* #DDDDDD */
+  --card-shadow: var(--shadow-card);
+
+  /* --- Input --- */
+  --input-bg:           var(--primitives-neutrals-50);  /* #F8F8F8 */
+  --input-border:       var(--primitives-neutrals-300); /* #DDDDDD */
+  --input-border-focus: var(--primitives-red-300);      /* #4F46E5 */
+  --input-text:         var(--primitives-neutrals-700); /* #333333 */
+  --input-placeholder:  var(--primitives-neutrals-500); /* #858585 */
+
+  /* --- Button --- */
+  /* White on red-300 is 3.88:1 — below AA. red-400 reaches 5.20:1 and is
+     still unmistakably the brand accent; --accent keeps #4F46E5 for everything
+     that isn't a filled button. */
+  --btn-primary-bg:       var(--primitives-red-400);     /* #CB2500 — 5.20:1 */
+  --btn-primary-text:     var(--primitives-neutrals-50); /* #F8F8F8 */
+  --btn-primary-hover-bg: var(--primitives-red-500);     /* #991600 — 8.01:1 */
+
+  --btn-secondary-bg:     var(--primitives-neutrals-50);  /* #F8F8F8 */
+  --btn-secondary-text:   var(--primitives-neutrals-700); /* #333333 */
+  --btn-secondary-border: var(--primitives-neutrals-300); /* #DDDDDD */
+
+  --btn-ghost-text:     var(--primitives-neutrals-600); /* #5C5C5C */
+  --btn-ghost-hover-bg: var(--primitives-neutrals-200); /* #F2F2F2 */
+}
+
+/* ============================================================
+   LAYER 2 — Semantic vars — Dark mode (.dark class)
+   ============================================================ */
+
+.dark {
+  /* Core surfaces */
+  --bg:             var(--primitives-neutrals-900); /* #1C1C1C */
+  --surface:        var(--primitives-neutrals-800); /* #232323 */
+  --surface-raised: var(--primitives-neutrals-700); /* #333333 */
+
+  /* Typography */
+  --text:        var(--primitives-neutrals-200); /* #F2F2F2 */
+  --text-muted:  var(--primitives-neutrals-500); /* #858585 */
+
+  /* Border */
+  --border:      var(--primitives-neutrals-600); /* #5C5C5C */
+
+  /* Accent — Red/200 reads well as text on dark (5.58:1) */
+  --accent:        var(--primitives-red-200);      /* #FA623D */
+  --accent-hover:  var(--primitives-red-300);      /* #4F46E5 */
+  --accent-text:   var(--primitives-red-200);      /* #FA623D — 5.58:1 */
+  --accent-fg:     var(--primitives-neutrals-50);  /* #F8F8F8 */
+
+  /* Focus ring */
+  --ring:          var(--primitives-red-200);      /* #FA623D */
+
+  /* --- Sidebar / Nav --- */
+  --sidebar-bg:          var(--primitives-neutrals-800); /* #232323 */
+  --sidebar-text:        var(--primitives-neutrals-200); /* #F2F2F2 */
+  --sidebar-muted:       var(--primitives-neutrals-500); /* #858585 */
+  --sidebar-border:      var(--primitives-neutrals-600); /* #5C5C5C */
+  --sidebar-active:      var(--primitives-neutrals-700); /* #333333 */
+  --sidebar-active-text: var(--primitives-neutrals-50);  /* #F8F8F8 */
+
+  /* --- Card --- */
+  --card-bg:     var(--primitives-neutrals-800); /* #232323 */
+  --card-border: var(--primitives-neutrals-600); /* #5C5C5C */
+  --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.24), 0 1px 2px -1px rgb(0 0 0 / 0.20);
+
+  /* --- Input --- */
+  --input-bg:           var(--primitives-neutrals-800); /* #232323 */
+  --input-border:       var(--primitives-neutrals-600); /* #5C5C5C */
+  --input-border-focus: var(--primitives-red-200);      /* #FA623D */
+  --input-text:         var(--primitives-neutrals-200); /* #F2F2F2 */
+  --input-placeholder:  var(--primitives-neutrals-500); /* #858585 */
+
+  /* --- Button --- */
+  /* Keep the vibrant orange fill on dark, but flip the label to near-black:
+     white on #FA623D is only 2.87:1, while #1C1C1C on it is 5.58:1. */
+  --btn-primary-bg:       var(--primitives-red-200);      /* #FA623D */
+  --btn-primary-text:     var(--primitives-neutrals-900); /* #1C1C1C — 5.58:1 */
+  --btn-primary-hover-bg: var(--primitives-red-100);      /* #FF907A — 7.73:1 */
+
+  --btn-secondary-bg:     var(--primitives-neutrals-800); /* #232323 */
+  --btn-secondary-text:   var(--primitives-neutrals-200); /* #F2F2F2 */
+  --btn-secondary-border: var(--primitives-neutrals-600); /* #5C5C5C */
+
+  --btn-ghost-text:     var(--primitives-neutrals-400); /* #B8B8B8 */
+  --btn-ghost-hover-bg: var(--primitives-neutrals-700); /* #333333 */
+}
+
+/* ============================================================
+   LAYER 3 — Component vars (inherits from semantic layer)
+   ============================================================ */
+
+:root {
+  /* Prose / Editor */
+  --prose-heading-color:  var(--text);
+  --prose-body-color:     var(--text);
+  --prose-muted-color:    var(--text-muted);
+  --prose-link-color:     var(--accent);
+  --prose-border-color:   var(--border);
+  --prose-code-bg:        var(--surface-raised);
+
+  /* Badge */
+  --badge-bg:     var(--surface-raised);
+  --badge-text:   var(--text-muted);
+  --badge-border: var(--border);
+
+  /* Tag */
+  --tag-bg:   color-mix(in srgb, var(--accent) 10%, transparent);
+  --tag-text: var(--accent);
+
+  /* Status */
+  /* Every foreground here is measured against its own tinted chip, not the
+     page background — a 12% tint lifts the effective background noticeably. */
+  --status-draft-bg:       color-mix(in srgb, var(--primitives-neutrals-500) 12%, transparent);
+  --status-draft-text:     var(--primitives-neutrals-600); /* 5.31:1 (was 2.93:1) */
+  --status-review-bg:      color-mix(in srgb, var(--primitives-gold-300) 15%, transparent);
+  --status-review-text:    var(--primitives-gold-600);     /* 5.37:1 (was 4.00:1) */
+  --status-published-bg:   color-mix(in srgb, #22c55e 12%, transparent);
+  --status-published-text: #166534;                        /* 5.82:1 (was 2.69:1) */
+  --status-archived-bg:    color-mix(in srgb, var(--primitives-neutrals-400) 12%, transparent);
+  --status-archived-text:  var(--primitives-neutrals-600); /* 5.61:1 */
+
+  /* Flagship / highlight chip — was hardcoded as gold-100/50 + gold-500,
+     which measured 1.13:1 on dark. Now a real token pair. */
+  --chip-highlight-bg:     color-mix(in srgb, var(--primitives-gold-300) 15%, transparent);
+  --chip-highlight-text:   var(--primitives-gold-600);
+
+  /* Accent text on an accent-tinted chip. The 10% tint lifts the background,
+     so --accent-text (4.93:1 on the page) drops to 4.29:1 here. */
+  --chip-accent-bg:        color-mix(in srgb, var(--accent) 10%, transparent);
+  --chip-accent-text:      var(--primitives-red-500);   /* 7.02:1 */
+
+  /* Tooltip */
+  --tooltip-bg:   var(--primitives-neutrals-700);
+  --tooltip-text: var(--primitives-neutrals-50);
+}
+
+.dark {
+  --status-published-text: #4ade80;                        /* 8.03:1 */
+  --status-review-text:    var(--primitives-gold-200);     /* 6.44:1 */
+  /* neutrals-500/600 measured 3.94:1 and 2.00:1 on their dark chips. */
+  --status-draft-text:     var(--primitives-neutrals-400); /* 7.33:1 */
+  --status-archived-text:  var(--primitives-neutrals-400); /* 6.75:1 */
+
+  --chip-highlight-text:   var(--primitives-gold-200);     /* 5.91:1 */
+  --chip-accent-text:      var(--primitives-red-200);      /* 4.93:1 */
+
+  --tooltip-bg:   var(--primitives-neutrals-100);
+  --tooltip-text: var(--primitives-neutrals-800);
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* Smooth color-scheme transitions */
+  transition:
+    background-color var(--transition-medium),
+    color var(--transition-medium);
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: Aeonik, Inter, system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings use PP Fragment */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "PP Fragment", Georgia, serif;
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+/* Links */
+a {
+  /* --accent-text, not --accent: the brand red fails AA as body text on the
+     light background (3.68:1 vs 4.93:1). */
+  color: var(--accent-text);
+  text-decoration: none;
+  transition: color var(--transition-base);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
+/* Selection */
+::selection {
+  background-color: color-mix(in srgb, var(--accent) 20%, transparent);
+  color: var(--text);
+}
+
+/* ============================================================
+   CUSTOM SCROLLBAR — dark theme
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primitives-neutrals-300);
+  border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primitives-neutrals-400);
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: var(--primitives-neutrals-600);
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primitives-neutrals-500);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primitives-neutrals-300) transparent;
+}
+
+.dark * {
+  scrollbar-color: var(--primitives-neutrals-600) transparent;
+}
+
+/* ============================================================
+   TRANSITION HELPERS — applied to interactive elements
+   ============================================================ */
+
+button,
+input,
+select,
+textarea,
+[role="button"] {
+  transition:
+    background-color var(--transition-base),
+    color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    opacity var(--transition-base);
+}
+
+/* ============================================================
+   TYPOGRAPHY UTILITIES (augment Tailwind)
+   ============================================================ */
+
+.text-display-l {
+  font-size: 3.5rem;
+  line-height: 4rem;
+  font-family: "PP Fragment", Georgia, serif;
+}
+
+.text-display-m {
+  font-size: 2.5rem;
+  line-height: 3rem;
+  font-family: "PP Fragment", Georgia, serif;
+}
+
+.text-display-s {
+  font-size: 2rem;
+  line-height: 2.5rem;
+  font-family: "PP Fragment", Georgia, serif;
+}
+
+.text-heading-l {
+  font-size: 1.75rem;
+  line-height: 2.25rem;
+  font-family: "PP Fragment", Georgia, serif;
+}
+
+.text-heading-m {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-family: "PP Fragment", Georgia, serif;
+}
+
+.text-heading-s {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-family: "PP Fragment", Georgia, serif;
+}
+
+.text-body {
+  font-size: 1rem;
+  line-height: 1.5rem;
+}
+
+.text-small {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-caption {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
