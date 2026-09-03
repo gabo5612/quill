@@ -2,6 +2,37 @@ import type { NextConfig } from "next";
 
 const isDev = process.env.NODE_ENV === 'development'
 
+/**
+ * The Supabase origin this deployment actually talks to.
+ *
+ * Locally that is http://127.0.0.1:54321 — plain HTTP on another port — which
+ * neither the `https:` CSP source nor the *.supabase.co remote pattern covers.
+ * Article images then fail to load with nothing but a CSP violation in the
+ * console: the files exist, are public, and serve fine when fetched directly.
+ * Deriving the origin keeps every environment correct without an allowlist.
+ */
+const supabaseOrigin = (() => {
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL
+  if (!url) return null
+  try {
+    return new URL(url).origin
+  } catch {
+    return null
+  }
+})()
+
+const supabaseRemotePattern = supabaseOrigin
+  ? (() => {
+      const { protocol, hostname, port } = new URL(supabaseOrigin)
+      return [{
+        protocol: protocol.replace(':', '') as 'http' | 'https',
+        hostname,
+        port,
+        pathname: '/storage/v1/object/**',
+      }]
+    })()
+  : []
+
 const nextConfig: NextConfig = {
   /* ---------------------------------------------------------------
      TypeScript — fail the build on type errors
@@ -27,6 +58,7 @@ const nextConfig: NextConfig = {
         port: "",
         pathname: "/storage/v1/object/**",
       },
+      ...supabaseRemotePattern,
     ],
   },
 
@@ -107,7 +139,9 @@ const nextConfig: NextConfig = {
                * URLs on arbitrary CDNs and Google profile avatars come from
                * googleusercontent.com; an allowlist silently breaks both.
                */
-              "img-src 'self' data: blob: https:",
+              ["img-src", "'self'", "data:", "blob:", "https:", supabaseOrigin]
+                .filter(Boolean)
+                .join(" "),
 
               /**
                * Fonts — the local /fonts/ dir. `data:` is allowed because
@@ -125,10 +159,17 @@ const nextConfig: NextConfig = {
                 "wss://*.supabase.co",
                 "https://inn.gs",           /* Inngest cloud */
                 "https://api.inngest.com",
-              ].join(" "),
+                /* The configured Supabase origin — covers local HTTP too. */
+                supabaseOrigin,
+                supabaseOrigin?.replace(/^http/, 'ws'),
+                /* Local Inngest dev server. */
+                isDev ? "http://127.0.0.1:8288" : null,
+              ].filter(Boolean).join(" "),
 
               /* Media */
-              "media-src 'self' blob: https://*.supabase.co",
+              ["media-src", "'self'", "blob:", "https://*.supabase.co", supabaseOrigin]
+                .filter(Boolean)
+                .join(" "),
 
               /* Workers */
               "worker-src 'self' blob:",
