@@ -187,7 +187,7 @@ function Payload({ payload }: { payload: Record<string, unknown> }) {
   }
 
   if (kind === 'qa') {
-    const issues = (payload.issues as { type: string; description: string; severity: string; suggestion?: string }[]) ?? []
+    const issues = (payload.issues as { type: string; description: string; severity: string; suggestion?: string | null }[]) ?? []
     return (
       <div className="space-y-2">
         <Row label="Score">

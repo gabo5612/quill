@@ -157,7 +157,10 @@ export const ProofreadSchema = z.object({
     type: z.enum(['spelling','grammar','coherence','brand-voice','banned-word']),
     description: z.string(),
     severity: z.enum(['low','medium','high']),
-    suggestion: z.string().optional(),
+    // Nullable, not optional: OpenAI's strict structured outputs require every
+    // key in `properties` to appear in `required`, so a field the model may
+    // leave out has to be expressible as null instead of absent.
+    suggestion: z.string().nullable().describe('Concrete fix, or null when there is nothing to suggest'),
   })),
   overallScore: z.number().describe('Quality score, 0 to 100'),
   passesQA: z.boolean(),
