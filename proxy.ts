@@ -75,6 +75,10 @@ export async function proxy(request: NextRequest) {
 
 export const config = {
   matcher: [
-    '/((?!_next/static|_next/image|favicon.ico|fonts|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+    // api/health is excluded on purpose: it reports which environment variables
+    // are missing, and the proxy builds a Supabase client — which throws when
+    // the Supabase keys are the ones missing. Without this the diagnostic
+    // endpoint is unreachable in exactly the situation it exists for.
+    '/((?!_next/static|_next/image|favicon.ico|fonts|api/health|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
 }
