@@ -40,8 +40,8 @@ export const ENV_CONTRACT: EnvRequirement[] = [
   },
   {
     name: 'ANTHROPIC_API_KEY',
-    severity: 'required',
-    requiredFor: 'Article generation (Claude models)',
+    severity: 'degrades',
+    requiredFor: 'Claude models and brand profile inference',
   },
   {
     name: 'INNGEST_EVENT_KEY',
@@ -78,15 +78,19 @@ export interface EnvReport {
   missingRequired: EnvRequirement[]
   degraded: EnvRequirement[]
   missingOptional: EnvRequirement[]
+  /** True when neither AI provider is configured — nothing can generate. */
+  noAiProvider: boolean
 }
 
 export function getEnvReport(): EnvReport {
   const missing = ENV_CONTRACT.filter(v => !isSet(v.name))
+  const noAiProvider = !isSet('ANTHROPIC_API_KEY') && !isSet('OPENAI_API_KEY')
   return {
-    ok: !missing.some(v => v.severity === 'required'),
+    ok: !missing.some(v => v.severity === 'required') && !noAiProvider,
     missingRequired: missing.filter(v => v.severity === 'required'),
     degraded: missing.filter(v => v.severity === 'degrades'),
     missingOptional: missing.filter(v => v.severity === 'optional'),
+    noAiProvider,
   }
 }
 
