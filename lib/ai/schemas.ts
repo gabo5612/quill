@@ -193,7 +193,12 @@ export const SeoSchema = z.object({
 })
 export type SeoResult = z.infer<typeof SeoSchema>
 
-export function normalizeSeo(seo: SeoResult): SeoResult {
+/** Input accepted by normalizeSeo: the model may omit internalLinkSuggestions. */
+export type SeoInput = Omit<SeoResult, 'internalLinkSuggestions'> & {
+  internalLinkSuggestions?: string[]
+}
+
+export function normalizeSeo(seo: SeoInput): SeoResult {
   return {
     ...seo,
     titleTag: truncateWords(seo.titleTag, TITLE_TAG_MAX),
