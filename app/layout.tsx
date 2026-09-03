@@ -33,7 +33,7 @@ export default function RootLayout({
                 background: 'var(--surface)',
                 color:      'var(--text)',
                 border:     '1px solid var(--border)',
-                fontFamily: 'Aeonik, Inter, system-ui, sans-serif',
+                fontFamily: 'ui-sans-serif, system-ui, sans-serif',
               },
             }}
           />

@@ -9,40 +9,8 @@
    FONT FACES
    ============================================================ */
 
-/* Aeonik — UI / Body */
-@font-face {
-  font-family: "Aeonik";
-  src: url("/fonts/aeonik-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Aeonik";
-  src: url("/fonts/aeonik-medium.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Aeonik";
-  src: url("/fonts/aeonik-bold.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* PP Fragment Glare — Display / Headings */
-@font-face {
-  font-family: "PP Fragment";
-  src: url("/fonts/pp-fragment-glare-regular.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
+/* UI / Body */
+/* Display / Headings */
 /* ============================================================
    TAILWIND v4 @theme  — maps CSS vars → Tailwind utilities
    ============================================================ */
@@ -125,8 +93,8 @@
   --color-btn-ghost-hover-bg:   var(--btn-ghost-hover-bg);
 
   /* --- Typography --- */
-  --font-fragment: "PP Fragment", Georgia, serif;
-  --font-aeonik:   Aeonik, Inter, system-ui, sans-serif;
+  --font-fragment: Georgia, "Times New Roman", serif;
+  --font-aeonik:   ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
   /* --- Font sizes: Display scale --- */
   --text-display-l:  3.5rem;   /* 56px / lh 64px */
@@ -427,16 +395,16 @@ html {
 body {
   background-color: var(--bg);
   color: var(--text);
-  font-family: Aeonik, Inter, system-ui, sans-serif;
+  font-family: var(--font-aeonik);
   font-size: 1rem;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Headings use PP Fragment */
+/* Headings use the display stack */
 h1, h2, h3, h4, h5, h6 {
-  font-family: "PP Fragment", Georgia, serif;
+  font-family: var(--font-fragment);
   font-weight: 400;
   line-height: 1.2;
   color: var(--text);
@@ -532,37 +500,37 @@ textarea,
 .text-display-l {
   font-size: 3.5rem;
   line-height: 4rem;
-  font-family: "PP Fragment", Georgia, serif;
+  font-family: var(--font-fragment);
 }
 
 .text-display-m {
   font-size: 2.5rem;
   line-height: 3rem;
-  font-family: "PP Fragment", Georgia, serif;
+  font-family: var(--font-fragment);
 }
 
 .text-display-s {
   font-size: 2rem;
   line-height: 2.5rem;
-  font-family: "PP Fragment", Georgia, serif;
+  font-family: var(--font-fragment);
 }
 
 .text-heading-l {
   font-size: 1.75rem;
   line-height: 2.25rem;
-  font-family: "PP Fragment", Georgia, serif;
+  font-family: var(--font-fragment);
 }
 
 .text-heading-m {
   font-size: 1.5rem;
   line-height: 2rem;
-  font-family: "PP Fragment", Georgia, serif;
+  font-family: var(--font-fragment);
 }
 
 .text-heading-s {
   font-size: 1.25rem;
   line-height: 1.75rem;
-  font-family: "PP Fragment", Georgia, serif;
+  font-family: var(--font-fragment);
 }
 
 .text-body {

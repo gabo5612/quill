@@ -35,9 +35,9 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <div className="flex items-center justify-center w-12 h-12 rounded-[var(--radius-md)] bg-[#4F46E5]">
             <span
               className="text-[#F8F8F8] font-bold leading-none select-none"
-              style={{ fontFamily: '"PP Fragment", Georgia, serif', fontSize: '1.375rem' }}
+              style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: '1.375rem' }}
             >
-              M
+              Q
             </span>
           </div>
 
@@ -45,15 +45,15 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <div className="flex flex-col items-center gap-0.5">
             <span
               className="text-[#F2F2F2] tracking-tight leading-none"
-              style={{ fontFamily: '"PP Fragment", Georgia, serif', fontSize: '1.5rem' }}
+              style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: '1.5rem' }}
             >
-              Content Tool
+              Quill
             </span>
             <span
               className="text-[#858585] text-sm tracking-wide uppercase"
-              style={{ fontFamily: 'Aeonik, Inter, system-ui, sans-serif', letterSpacing: '0.08em', fontSize: '0.6875rem' }}
+              style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif', letterSpacing: '0.08em', fontSize: '0.6875rem' }}
             >
-              Quill
+              Editorial platform
             </span>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
         {/* Tagline */}
         <p
           className="text-[#5C5C5C] text-center text-sm leading-relaxed"
-          style={{ fontFamily: 'Aeonik, Inter, system-ui, sans-serif' }}
+          style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}
         >
           Brand content, at scale.
         </p>
@@ -75,7 +75,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           {errorMessage && (
             <div
               className="rounded-[var(--radius-md)] border border-[#4F46E5]/30 bg-[#4F46E5]/10 px-4 py-3 text-sm text-[#FF907A]"
-              style={{ fontFamily: 'Aeonik, Inter, system-ui, sans-serif' }}
+              style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}
               role="alert"
             >
               {errorMessage}
@@ -86,13 +86,13 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           <div className="flex flex-col gap-1">
             <h1
               className="text-[#F2F2F2] leading-snug"
-              style={{ fontFamily: '"PP Fragment", Georgia, serif', fontSize: '1.25rem' }}
+              style={{ fontFamily: 'Georgia, "Times New Roman", serif', fontSize: '1.25rem' }}
             >
               Sign in
             </h1>
             <p
               className="text-[#858585] text-sm"
-              style={{ fontFamily: 'Aeonik, Inter, system-ui, sans-serif' }}
+              style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}
             >
               Use your corporate Google account to continue.
             </p>
@@ -104,7 +104,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
             <button
               type="submit"
               className="w-full flex items-center justify-center gap-3 rounded-[var(--radius-md)] border border-[#5C5C5C] bg-[#2E2E2E] px-4 py-3 text-sm font-medium text-[#F2F2F2] transition-all duration-150 hover:bg-[#383838] hover:border-[#858585] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5] focus-visible:ring-offset-2 focus-visible:ring-offset-[#232323] active:scale-[0.99] cursor-pointer"
-              style={{ fontFamily: 'Aeonik, Inter, system-ui, sans-serif' }}
+              style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}
             >
               {/* Google logo SVG */}
               <svg
@@ -137,7 +137,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
           {/* Domain restriction note */}
           <p
             className="text-center text-[#5C5C5C]"
-            style={{ fontFamily: 'Aeonik, Inter, system-ui, sans-serif', fontSize: '0.75rem' }}
+            style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif', fontSize: '0.75rem' }}
           >
             Only for{' '}
             <span className="text-[#858585] font-medium">@example.com</span> accounts
@@ -148,7 +148,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       {/* Footer */}
       <p
         className="relative z-10 mt-12 text-[#333333]"
-        style={{ fontFamily: 'Aeonik, Inter, system-ui, sans-serif', fontSize: '0.6875rem' }}
+        style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif', fontSize: '0.6875rem' }}
       >
         &copy; {new Date().getFullYear()} Quill
       </p>

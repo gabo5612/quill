@@ -327,7 +327,7 @@ export function TiptapEditor({ initialContent, editable = true, placeholder, onU
       {/* Compass prose styles */}
       <style>{`
         .compass-prose h1 {
-          font-family: "PP Fragment", Georgia, serif;
+          font-family: Georgia, "Times New Roman", serif;
           font-size: 2rem;
           line-height: 2.5rem;
           font-weight: 400;
@@ -336,7 +336,7 @@ export function TiptapEditor({ initialContent, editable = true, placeholder, onU
           margin-top: 0;
         }
         .compass-prose h2 {
-          font-family: "PP Fragment", Georgia, serif;
+          font-family: Georgia, "Times New Roman", serif;
           font-size: 1.5rem;
           line-height: 2rem;
           font-weight: 400;
@@ -345,7 +345,7 @@ export function TiptapEditor({ initialContent, editable = true, placeholder, onU
           margin-bottom: 0.75rem;
         }
         .compass-prose h3 {
-          font-family: "PP Fragment", Georgia, serif;
+          font-family: Georgia, "Times New Roman", serif;
           font-size: 1.25rem;
           line-height: 1.75rem;
           font-weight: 400;
@@ -354,7 +354,7 @@ export function TiptapEditor({ initialContent, editable = true, placeholder, onU
           margin-bottom: 0.5rem;
         }
         .compass-prose h4 {
-          font-family: Aeonik, Inter, system-ui, sans-serif;
+          font-family: ui-sans-serif, system-ui, sans-serif;
           font-size: 1rem;
           line-height: 1.5rem;
           font-weight: 500;
