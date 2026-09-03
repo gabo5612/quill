@@ -83,13 +83,20 @@ export interface EnvReport {
 }
 
 export function getEnvReport(): EnvReport {
+  // The local Inngest dev server needs no cloud credentials.
+  const inngestDev = isSet('INNGEST_DEV')
+  const inngestCloudKeys = ['INNGEST_EVENT_KEY', 'INNGEST_SIGNING_KEY']
+
+  const effectiveSeverity = (v: EnvRequirement): EnvSeverity =>
+    inngestDev && inngestCloudKeys.includes(v.name) ? 'optional' : v.severity
+
   const missing = ENV_CONTRACT.filter(v => !isSet(v.name))
   const noAiProvider = !isSet('ANTHROPIC_API_KEY') && !isSet('OPENAI_API_KEY')
   return {
-    ok: !missing.some(v => v.severity === 'required') && !noAiProvider,
-    missingRequired: missing.filter(v => v.severity === 'required'),
-    degraded: missing.filter(v => v.severity === 'degrades'),
-    missingOptional: missing.filter(v => v.severity === 'optional'),
+    ok: !missing.some(v => effectiveSeverity(v) === 'required') && !noAiProvider,
+    missingRequired: missing.filter(v => effectiveSeverity(v) === 'required'),
+    degraded: missing.filter(v => effectiveSeverity(v) === 'degrades'),
+    missingOptional: missing.filter(v => effectiveSeverity(v) === 'optional'),
     noAiProvider,
   }
 }
