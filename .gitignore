@@ -30,7 +30,9 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files — local overrides are never committed
+# env files — nothing with real values is ever committed
+.env
+.env.*
 .env.local
 .env.*.local
 # keep .env.example tracked
