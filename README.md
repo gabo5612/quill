@@ -47,10 +47,35 @@ per-brand role (owner / editor / viewer) — see `lib/auth/permissions.ts`.
 
 ## Running it
 
+The whole stack runs locally in Docker — Postgres with pgvector, auth, storage
+and the job runner. Nothing but the model API leaves your machine.
+
 ```bash
 npm install
-cp .env.example .env.local   # fill in Supabase, Anthropic, OpenAI, Inngest
+cp .env.example .env.local          # add an OpenAI and/or Anthropic key
+
+supabase start                      # Postgres + pgvector + auth + storage,
+                                    # migrations applied automatically
+npx inngest-cli@latest dev -u http://localhost:3000/api/inngest
 npm run dev
 ```
+
+`supabase start` prints the local API URL, anon key and service role key — copy
+those three into `.env.local`. Set `INNGEST_DEV=1` and the Inngest cloud keys
+are not needed.
+
+At least one of `ANTHROPIC_API_KEY` or `OPENAI_API_KEY` must be set; the
+generation pipeline runs on whichever is configured. Embeddings are OpenAI-only,
+so document search needs that one specifically. `GET /api/health` reports what
+is configured and what each missing variable disables.
+
+### Signing in locally
+
+The only shipped auth method is Google OAuth against a single Workspace domain,
+which cannot be completed against a local Supabase. Set `LOCAL_DEV_USER` and the
+app mints a real session for that address instead of showing the login screen —
+creating the account on first run. The session is a genuine JWT, so Row Level
+Security, permissions and the audit log are exercised exactly as in production.
+The bypass refuses to engage unless Supabase is running on this machine.
 
 Database migrations live in `supabase/migrations/`.

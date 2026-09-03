@@ -136,7 +136,7 @@ export default async function DashboardPage() {
   const { profile, activeBrands, totalThisMonth, scheduledCount, recentArticles } =
     await getDashboardData()
 
-  const name = profile?.name ?? 'team'
+  const name = profile?.name?.trim() || 'team'
 
   return (
     <div className="space-y-8 max-w-5xl">

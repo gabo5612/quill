@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@supabase/ssr'
+import { isLocalDevAuthEnabled } from '@/lib/auth/local-dev'
 
 /**
  * Next.js 16 renamed `middleware` to `proxy`. This runs before every matched
@@ -17,7 +18,9 @@ function isPublicPath(pathname: string): boolean {
     // with INNGEST_SIGNING_KEY. Redirecting it to /login breaks every job.
     pathname.startsWith('/api/inngest') ||
     // Configuration probe — most useful precisely when nobody can sign in.
-    pathname === '/api/health'
+    pathname === '/api/health' ||
+    // Local dev sign-in. Guards itself and 404s when not enabled.
+    pathname === '/api/dev-login'
   )
 }
 
@@ -57,9 +60,13 @@ export async function proxy(request: NextRequest) {
       return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
     }
     const url = request.nextUrl.clone()
-    url.pathname = '/login'
+    // Locally there is no Google OAuth to redirect to, so mint a session
+    // instead of showing a login screen nobody can complete.
+    url.pathname = isLocalDevAuthEnabled() ? '/api/dev-login' : '/login'
     url.search = ''
-    if (pathname !== '/') url.searchParams.set('redirectTo', pathname)
+    if (!isLocalDevAuthEnabled() && pathname !== '/') {
+      url.searchParams.set('redirectTo', pathname)
+    }
     return NextResponse.redirect(url)
   }
 
