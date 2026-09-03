@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { callLLMStructured } from '@/lib/ai/call'
 import { getBalancedModelId, getFlagshipModelId } from '@/lib/ai/registry'
-import { isProviderConfigured } from '@/lib/ai/providers'
+import { pickAvailableProvider } from '@/lib/ai/providers'
 import { crawlSite, type CrawlResult } from './crawl'
 
 export const InferredProfileSchema = z.object({
@@ -41,8 +41,9 @@ export async function inferBrandProfileFromSite(
   url: string,
   brandName: string,
 ): Promise<InferProfileResult> {
-  if (!isProviderConfigured('anthropic')) {
-    throw new Error('ANTHROPIC_API_KEY is not configured, so the site cannot be analysed.')
+  const provider = pickAvailableProvider()
+  if (!provider) {
+    throw new Error('No AI provider is configured, so the site cannot be analysed.')
   }
 
   const crawl = await crawlSite(url)
@@ -56,11 +57,11 @@ export async function inferBrandProfileFromSite(
 
   // Longer sites benefit from the stronger model; short ones don't.
   const modelId = crawl.text.length > 12_000
-    ? getFlagshipModelId('anthropic')
-    : getBalancedModelId('anthropic')
+    ? getFlagshipModelId(provider)
+    : getBalancedModelId(provider)
 
   const { object, usage } = await callLLMStructured({
-    provider: 'anthropic',
+    provider,
     modelId,
     system: `You are a brand strategist.
 

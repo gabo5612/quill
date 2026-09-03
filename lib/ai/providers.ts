@@ -41,3 +41,14 @@ export const EMBEDDINGS_UNAVAILABLE_MESSAGE =
   'Document search is unavailable: OPENAI_API_KEY is not configured. ' +
   'Embeddings are OpenAI-only, so uploaded documents cannot be indexed. ' +
   'Article generation still works from the brand profile.'
+
+/**
+ * The provider to use when the caller has no preference. Anthropic first
+ * because it is the stronger drafter; OpenAI is a full fallback. null means
+ * nothing can run.
+ */
+export function pickAvailableProvider(): ModelProvider | null {
+  if (isProviderConfigured('anthropic')) return 'anthropic'
+  if (isProviderConfigured('openai')) return 'openai'
+  return null
+}
